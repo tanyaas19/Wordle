@@ -23,7 +23,6 @@ function start() {
 }
 
 function check(num) {
-    document.getElementById(num + String(4)).value = document.getElementById(num + String(4)).value.toUpperCase();
     x = "";
     for (var i = 0; i < 5; i++) {
         x += document.getElementById(num + String(i)).value;
@@ -63,8 +62,20 @@ function check(num) {
         }
     }
 }
-function move(frm, to) {
+function move(frm, to, too) {
     frm.value = frm.value.toUpperCase();
-    if (frm.value.length === 1)
+    if (frm.value.length === 1 && to[1] != '5')
         document.getElementById(to).focus();
+    check(to[0]);
+}
+function moves(frm, to, too) {
+    var key = event.keyCode || event.charCode;
+
+    if (key == 8 || key == 46) {
+        if (frm.value == "" && too[1] != '5') {
+            document.getElementById(too).focus();
+            return true;
+        }
+        return true;
+    }
 }
